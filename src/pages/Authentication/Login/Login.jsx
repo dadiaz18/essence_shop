@@ -47,7 +47,9 @@ const Login = () => {
       navigate("/");
     } catch (err) {
       setLoading(false);
-      setLogin({ ...login, error: err.response.data.errors[0] });
+     // setLogin({ ...login, error: err.response.data.errors[0] });
+     console.log("esto es error", err.message);
+     setLogin({ ...login, error: "Invalid email or password" });
     }
   };
 

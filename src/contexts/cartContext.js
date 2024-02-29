@@ -81,6 +81,25 @@ const CartProvider = ({ children }) => {
     }
   };
 
+  const removeAllFromCartHandler = async (products) => {
+    let response;
+    for (let i = 0; i < products.length; i++) {
+      setLoading(true);
+      response = await removeFromCart(products[i]._id, token);
+      if (response.status !== 200) {
+        console.log("que paso", response);
+        console.log("nuncas deberia llegar aca");
+        setLoading(false);
+        return;
+      }
+    }
+
+    if (response.status === 200) {
+      toast.success("Compra exitosamente realizada!");
+      cartDispatch({ type: "SET_CART_DATA", payload: response.data.cart });
+    }
+  };
+
   const updateQtyHandler = async (product, type) => {
     if (type === "decrement" && product.qty === 1) {
       removeFromCartHandler(product);
@@ -123,6 +142,7 @@ const CartProvider = ({ children }) => {
         cartDispatch,
         addToCartHandler,
         removeFromCartHandler,
+        removeAllFromCartHandler,
         updateQtyHandler,
         moveToWishlistHandler,
         loading,

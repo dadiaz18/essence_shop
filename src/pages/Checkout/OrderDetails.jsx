@@ -12,7 +12,7 @@ export const OrderDetails = () => {
   const navigate = useNavigate();
   const { token } = useAuth();
 
-  const { cartState, setSelectedCoupon, selectedCoupon, cartPrice } = useCart();
+  const { cartState, setSelectedCoupon, selectedCoupon, cartPrice, removeAllFromCartHandler } = useCart();
   const {
     addressState: { addresses, selectedAddrId },
   } = useAddress();
@@ -49,6 +49,7 @@ export const OrderDetails = () => {
     });
   };
 
+  /*
   const displayRazorpay = async () => {
     const res = await loadScript(
       "https://checkout.razorpay.com/v1/checkout.js"
@@ -97,6 +98,12 @@ export const OrderDetails = () => {
 
     const paymentObject = new window.Razorpay(options);
     paymentObject.open();
+  };
+  */
+
+  const displaySuccess = async () => {
+    removeAllFromCartHandler(cartState);
+    navigate("/success");
   };
 
   return (
@@ -174,7 +181,7 @@ export const OrderDetails = () => {
       <button
         className="btn btn-primary place-order"
         disabled={!selectedAddrId}
-        onClick={displayRazorpay}
+        onClick={displaySuccess}
       >
         Place Order
       </button>

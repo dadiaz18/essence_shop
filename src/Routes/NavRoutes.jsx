@@ -18,6 +18,7 @@ import { OrderList } from "../components/OrderList/OrderList";
 import { AddressList } from "../components/AddressList/AddressList";
 import { Checkout } from "./../pages/Checkout/Checkout";
 import { OrderSummary } from "./../pages/OrderSummary/OrderSummary";
+import { Success } from "../pages/Checkout/Success/Success";
 
 const NavRoutes = () => {
   const { isAuth } = useAuth();
@@ -35,6 +36,7 @@ const NavRoutes = () => {
           <Route path="/cart" element={<Cart />} />
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/success" element={<Success />} />
           <Route path="/order/:orderId" element={<OrderSummary />} />
 
           <Route path="/profile" element={<UserAccount />}>
